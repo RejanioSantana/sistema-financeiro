@@ -26,7 +26,12 @@ class ReportController extends Controller
                     ->where('user_id',Auth::user()->id)->get();
 
 
-        $report = [];
+        $report = [
+            'RECEITA FIXA' => [],
+            'RECEITA VARIAVEL'=> [],
+            'DESPESA FIXA' => [],
+            'DESPESA VARIAVEL' => []
+        ];
         $all = [
             'TR' => 0,
             'TD' => 0,

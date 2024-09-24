@@ -29,7 +29,7 @@
         <div class="info-box">
           <span class="info-box-icon bg-red"><i class=""></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Gastos</span>
+            <span class="info-box-text">Despesas</span>
             <span class="info-box-number">{{$relatorio['DG']}}</span>
           </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
@@ -42,7 +42,7 @@
         <div class="info-box">
           <span class="info-box-icon bg-green"><i class=""></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Renda</span>
+            <span class="info-box-text">Rendas</span>
             <span class="info-box-number">{{$relatorio['RG']}}</span>
           </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
@@ -56,5 +56,31 @@
           </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
       </div><!-- /.col -->
+      <div class="content" style="display: flex;">
 
+        <div id="donutchart" style="width: 100%; height: 40vh;"></div>
+      
+      </div>
+      <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Rendas',     <?=$relatorio['RG']?>],
+          ['Despesas',      <?=$relatorio['DG']?>],
+          // ['Movimento',  ],
+          // ['Watch TV', 2],
+          // ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'Receitas e Despesas',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
   @endsection
