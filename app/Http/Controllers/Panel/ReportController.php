@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
-use App\Models\ReceitasDespesas;
 use Illuminate\Http\Request;
+use App\Models\ReceitasDespesas;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         if(Auth::guest()){
@@ -17,7 +21,56 @@ class ReportController extends Controller
         $date  = date("Y",time());
         return view('report',['title'=> 'Relatório','date' => $date]);
     }
-    public function pdf(Request $r)
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+
+    public function report(Request $r)
     {
         $one_date =  $r['year-1']."/".$r['month-1']."/01";
         $two_date =  $r['year-2']."/".$r['month-2']."/01";
@@ -58,6 +111,5 @@ class ReportController extends Controller
         }
         $all['SD'] = $all['TR'] -$all['TD'];
         return view('result', ['title'=>'Planilha','report'=>$report,'all'=> $all]);
-
     }
 }
