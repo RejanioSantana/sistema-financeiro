@@ -14,12 +14,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        if(Auth::guest()){
-            return redirect('/login');
-        }
         
         $date  = date("Y",time());
-        return view('report',['title'=> 'Relatório','date' => $date]);
+        return view('panel/report/index',['title'=> 'Relatório','date' => $date]);
     }
 
     /**
@@ -110,6 +107,6 @@ class ReportController extends Controller
             
         }
         $all['SD'] = $all['TR'] -$all['TD'];
-        return view('result', ['title'=>'Planilha','report'=>$report,'all'=> $all]);
+        return view('panel/report/result', ['title'=>'Planilha','report'=>$report,'all'=> $all]);
     }
 }

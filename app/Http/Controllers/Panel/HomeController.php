@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Panel;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\ReceitasDespesas;
 use App\Http\Controllers\Controller;
@@ -14,19 +15,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::guest()){
-
-            return redirect()->route('login');
-        }
-
         $movimentos = $this->relatorioMes();
         
-        return view('home',['title'=> 'Home','relatorio'=> $movimentos]);
+        return view('panel/home',['title'=> 'Home','relatorio'=> $movimentos]);
     }
 
     public function relatorioMes(): array
     {
-        $movimento = ReceitasDespesas::limit(30)->orderby('id','desc')->get();
+
+        $currentDate = Carbon::now()->format('Y-m');
+        $currentDate = $currentDate . "-01";
+        $userId = Auth::user()->id;
+        $movimento = ReceitasDespesas::where('date',$currentDate)
+                ->where('user_id', $userId)
+                ->orderBy('id', 'desc')
+                ->get();
+
         $relatorio = [
             'RG' => 0,
             'DG' => 0,

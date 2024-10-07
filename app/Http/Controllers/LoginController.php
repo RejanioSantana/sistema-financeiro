@@ -12,7 +12,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('login', ['title' => 'Login']);
+        return view('login/index', ['title' => 'Login']);
 
     }
 
@@ -21,7 +21,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        return view('user-register',['title'=> 'Cadastro']);
+        return view('login/register',['title'=> 'Cadastro']);
     }
 
     /**
@@ -42,6 +42,12 @@ class LoginController extends Controller
         return back()->with('error_login', 'Ocorreu um erro ao fazer o login,
         tente novamente em alguns segundos.');
 
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 
     /**

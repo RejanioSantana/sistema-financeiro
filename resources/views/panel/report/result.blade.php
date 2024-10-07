@@ -105,4 +105,6 @@
                     </table>
                 </div><!-- /.box-body -->
               </div>
+                <button class="btn btn-primary"><a href="{{route('panel.report.index')}}" style="color:white"> Voltar</a></button>
+              
 @endsection

@@ -15,13 +15,10 @@ class ReleaseController extends Controller
      */
     public function index()
     {
-        if(Auth::guest()){
-            return redirect('/login');
-        }
         $dados = ReceitasDespesas::where('user_id',Auth::user()->id)->paginate(15);
         $months = array( 'Jan','Fev','Mar','Abr','Mai','Jun',
                         'Jul','Ago','Set','Out','Nov','Dez');
-        return view('delete',[
+        return view('panel/release/index',[
             'title'=> 'Exclusão',
             'dados'=> $dados,
             'months' =>$months]);
@@ -36,7 +33,7 @@ class ReleaseController extends Controller
             return redirect('/login');
         }
         $data = $this->getType($id);
-        return view('insert',['title'=> 'Inserção','data' => $data]);
+        return view('panel/release/create',['title'=> 'Inserção','data' => $data]);
     }
 
     /**
@@ -103,16 +100,6 @@ class ReleaseController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $dados = ReceitasDespesas::find($id);
-        $dados->delete();
-        return back();
-    }
-
     public function getType($id)
     {
         $tipo = [];
@@ -140,4 +127,18 @@ class ReleaseController extends Controller
         $data = [$tipo, $options,$date];
         return $data;
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        
+        $dados = ReceitasDespesas::find($id);
+        $dados->delete();
+        return back();
+
+    }
+
+    
 }

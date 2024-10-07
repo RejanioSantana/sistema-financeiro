@@ -1,5 +1,5 @@
  <!-- Logo -->
- <a href="index2.html" class="logo"><b>Finanças</b>LTE</a>
+ <a href="{{route('panel.home')}}" class="logo"><b>Finanças</b>LTE</a>
  <!-- Header Navbar: style can be found in header.less -->
  <nav class="navbar navbar-static-top" role="navigation">
    <!-- Sidebar toggle button-->
@@ -24,7 +24,7 @@
            <!-- Menu Footer-->
            <li class="user-footer">
              <div class="pull-right">
-               <a href="{{route('logout')}}" class="btn btn-default btn-flat">Sign out</a>
+               <a href="{{route('logout')}}" class="btn btn-default btn-flat">Sair</a>
              </div>
            </li>
          </ul>

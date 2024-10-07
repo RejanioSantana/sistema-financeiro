@@ -2,9 +2,13 @@
 @extends('master')
 
 @section('header')
+    @php
+       setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'portuguese');
+
+    @endphp
     <h1>
-    Utimos 30 dias
-      <small>Version 1.0</small>
+    Este mês de {{strftime('%B', strtotime('today'));}}
+      {{-- <small>Version 1.0</small> --}}
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

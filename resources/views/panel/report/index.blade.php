@@ -10,7 +10,7 @@
             <h3 class="box-title">Escolha o período de visulização:</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form role="form" name="formulario" method="post" action="{{route('pdf')}}">
+        <form role="form" name="formulario" method="post" action="{{route('panel.report.result')}}">
             @csrf
             <div class="box-body">
             <div class="form-group">

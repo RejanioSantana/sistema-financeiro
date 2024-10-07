@@ -9,7 +9,7 @@
             <h3 class="box-title">Inserção de {{$data[0][1]}}</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form role="form" name="formulario" method="post" action="{{route('insert')}}">
+        <form role="form" name="formulario" method="post" action="{{route('panel.release.store')}}">
             @csrf
             <input type="hidden" name="tipo" value="{{$data[0][0]}}">
             <div class="box-body">
@@ -45,18 +45,19 @@
                 <label>
                     <label>Mês</label>
                       <select class="form-control" name="month">
-                        <option value="1">Jan</option>
-                        <option value="2">Fev</option>
-                        <option value="3">Mar</option>
-                        <option value="4">Abr</option>
-                        <option value="5">Mai</option>
-                        <option value="6">Jun</option>
-                        <option value="7">Jul</option>
-                        <option value="8">Ago</option>
-                        <option value="9">Set</option>
-                        <option value="10">Out</option>
-                        <option value="11">Nov</option>
-                        <option value="12">Dez</option>
+                        <?php 
+                            $currentMonth = date('n'); // Obtém o número do mês atual (1-12)
+                            $months = [
+                                1 => 'Jan', 2 => 'Fev', 3 => 'Mar', 4 => 'Abr', 5 => 'Mai', 
+                                6 => 'Jun', 7 => 'Jul', 8 => 'Ago', 9 => 'Set', 10 => 'Out', 
+                                11 => 'Nov', 12 => 'Dez'
+                            ];
+
+                            foreach ($months as $value => $name) {
+                                $selected = ($value == $currentMonth) ? 'selected' : ''; // Verifica se é o mês atual
+                                echo "<option value=\"$value\" $selected>$name</option>";
+                            }
+                        ?>
                       </select>
                 
                 </label>

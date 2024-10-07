@@ -31,8 +31,13 @@
                         {{$month}}</td>
                         <td>{{$index->description}}(R${{$index->value}})</td>
                         <td>{{$index->type}}</td>
-                        <td><a class="btn-block btn-danger btn-sm "align='center' 
-                        href="{{route('delete.destroy',$index->id)}}">Deletar</a></td>
+                        <td>
+                          <form action="{{route('panel.release.destroy',$index->id)}}" method="post">
+                              @csrf()
+                              @method('delete')
+                              <button type="submit" class="btn btn-danger">Deletar</button>
+                          </form>
+                        </td>
                         
                         </tr>
                         
